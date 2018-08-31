@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js购物车</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta id="metaid" name="viewport" />
+	<script type="text/javascript">
+		var metaObj = document.getElementById('metaid');
+		var sreenWidth = window.screen.width;
+		window.onload = function(){
+		    if(sreenWidth>=1200){
+		        metaObj.setAttribute('content','width=1200');
+		        console.log(metaObj.content)
+		    }else{
+		        metaObj.setAttribute('content','width=device-width, initial-scale=1, maximum-scale=1');
+		        console.log(metaObj.content)
+		    }
+		}
+	</script>
+</head>
+<body>
+	<div class="nav-wrapper">
+        <div class="container">
+            <ul id="nav-list">
+                <li class="nav-item"><a class="active" target="_blank">网站首页</a></li>
+                <li class="nav-item"><a target="_blank">网上商城</a></li>
+                <li class="nav-item"><a target="_blank">智能管家</a></li>
+                <li class="nav-item"><a target="_blank">技术支持</a></li>
+                <li class="nav-item"><a target="_blank">应用案例</a></li>
+                <li class="nav-item"><a target="_blank">关于我们</a></li>
+                <li class="nav-item"><a target="_blank">加盟联系</a></li>
+            </ul>
+            <div class="animate-block"></div>
+        </div>
+    </div>
+    <script src="js/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			var active = $('.active'); //当前选中子菜单
+			var active_width = active.innerWidth();
+			var active_left = active.position().left;
+			var animate_block = $('.animate-block');
+			
+			//设置滑块初始位置
+			$(".animate-block").css({width:active_width,left:active_left});
+			
+			//滑动事件
+			$("#nav-list>li").hover(function(){
+				var index = $(this).index();
+				var a_cur = $("#nav-list a").eq(index); //得到当前元素
+				var oWidth = a_cur.innerWidth();
+				var oLeft = a_cur.position().left;
+				$(".animate-block").stop().animate({width:oWidth,left:oLeft});
+			},function(){
+				$(".animate-block").stop().animate({width:active_width,left:active_left});
+			});
+			
+			//点击事件
+			$("#nav-list>li>a").click(function(){
+				$(this).find('a').addClass('animate-block');
+				active_width = $(this).innerWidth();
+				active_left = $(this).position().left;
+				$(".animate-block").stop().animate({width:active_width,left:active_left});
+			});
+		})
+	</script>
+</body>
+</html>
