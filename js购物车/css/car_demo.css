@@ -46,7 +46,20 @@ table { border-collapse:collapse; border-spacing:0; }
     overflow:hidden;
     visibility:hidden;
 }
-.list li{height:120px;text-align: center;}
+.list li{height:120px;text-align: center;transition: 0.5s;}
+.list_act{animation: changeHeight .35s;}
+@keyframes changeHeight{
+	from{height:120px;}
+	to{height:0px;}
+}
+.list li:hover{
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transform: translate3d(0,-2px,0);
+    transition: 0.5s;
+    z-index: 9;
+    position: relative;
+}
+.list li:hover .name{color:#FF5500;}
 .list_item{height:120px;float: left;}
 .check,.price,.subtotal,.delete,.number{line-height: 120px;text-align: center;}
 .check{width:100px;}
@@ -89,7 +102,6 @@ input[type='checkbox']{cursor: pointer;}
 	text-align: left;
 	cursor: pointer;
 }
-.name:hover{color:#FF5500;}
 .price{color: #FF5500;}
 .number input{height:20px;display: inline-block;vertical-align: middle;}
 .number input[type='button']{
@@ -118,4 +130,3 @@ input[type='checkbox']{cursor: pointer;}
 .foot span{color: #FF5500;font-size: 20px;}
 #removes:hover{color: #FF5500;}
 #payfor:hover{color: #FF5500;}
-111
